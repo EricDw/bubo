@@ -7,6 +7,6 @@ import 'input.dart';
 /// A parser base class.
 abstract class Parser<T> {
   Result<T> parse(Input input) {
-    return Result.failure("Function: 'parse' not implemented.");
+    return Result.failure("Function: 'parse' not implemented.", input);
   }
 }

@@ -1,9 +1,8 @@
-
-import 'package:bubo/constants.dart';
+import 'package:bubo/input_extensions.dart';
 import 'package:bubo/parser.dart';
 import 'package:bubo/result.dart';
-import 'package:bubo/input_extensions.dart';
 
+import 'constants.dart';
 import 'input.dart';
 
 typedef CharPredicate = bool Function(String char);
@@ -19,14 +18,14 @@ class PredicateParser extends Parser<String> {
 
   @override
   Result<String> parse(Input input) {
-    var char = input.nextChar();
+    var char = input.currentCharacter();
 
-    if (char == eof) return Result.failure(_eofMessage);
+    if (char == eof) return Result.failure(_eofMessage, input);
 
     if (predicate(char)) {
       return Result.success(char, input.incrementColumn());
     } else {
-      return Result.failure("Given: $char, did not to match predicate.");
+      return Result.failure("Given: $char, did not to match predicate.", input);
     }
   }
 }

@@ -11,6 +11,6 @@ abstract class Result<T> with _$Result<T> {
 
   const factory Result.success(T value, Input nextInput) = Success<T>;
 
-  const factory Result.failure(String errorMessage) = Failure<T>;
+  const factory Result.failure(String errorMessage, Input input) = Failure<T>;
 
 }

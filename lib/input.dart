@@ -18,7 +18,6 @@ class Input {
   }
 
   factory Input.fromPath({String path}) {
-
     File sourceFile = File(path);
 
     return Input(originalSource: sourceFile.readAsStringSync());

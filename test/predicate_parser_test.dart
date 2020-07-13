@@ -14,12 +14,14 @@ void main() {
   });
 
   test('The parse function fails upon empty input', () {
-    var expected = Result.failure(
-        "Expected a character instead reached end of the source.");
+    var input2 = Input.fromString(source: "");
+
+    var expected = Result<String>.failure(
+        "Expected a character instead reached end of the source.", input2);
 
     final parser = PredicateParser((String char) => true);
 
-    expect(parser.parse(Input.fromString(source: "")), expected);
+    expect(parser.parse(input2), expected);
   });
 
   test('The parse function succeeds upon correct input', () {

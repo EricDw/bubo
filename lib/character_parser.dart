@@ -1,7 +1,8 @@
 
+import 'package:bubo/input_extensions.dart';
 import 'package:bubo/parser.dart';
 import 'package:bubo/result.dart';
-import 'package:bubo/input_extensions.dart';
+
 
 import 'input.dart';
 import 'predicate_parser.dart';
@@ -27,9 +28,9 @@ class CharacterParser extends Parser<String> {
         },
         orElse: () {
 
-          String char = input.nextChar();
+          String char = input.currentCharacter();
 
-          return Result.failure("Expected: $expected but found $char");
+          return Result.failure("Expected: $expected but found $char", input);
         });
   }
 }

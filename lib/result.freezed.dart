@@ -19,9 +19,10 @@ class _$ResultTearOff {
     );
   }
 
-  Failure<T> failure<T>(String errorMessage) {
+  Failure<T> failure<T>(String errorMessage, Input input) {
     return Failure<T>(
       errorMessage,
+      input,
     );
   }
 }
@@ -33,12 +34,12 @@ mixin _$Result<T> {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result success(T value, Input nextInput),
-    @required Result failure(String errorMessage),
+    @required Result failure(String errorMessage, Input input),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result success(T value, Input nextInput),
-    Result failure(String errorMessage),
+    Result failure(String errorMessage, Input input),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -133,7 +134,7 @@ class _$Success<T> implements Success<T> {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result success(T value, Input nextInput),
-    @required Result failure(String errorMessage),
+    @required Result failure(String errorMessage, Input input),
   }) {
     assert(success != null);
     assert(failure != null);
@@ -144,7 +145,7 @@ class _$Success<T> implements Success<T> {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result success(T value, Input nextInput),
-    Result failure(String errorMessage),
+    Result failure(String errorMessage, Input input),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -191,7 +192,7 @@ abstract class Success<T> implements Result<T> {
 abstract class $FailureCopyWith<T, $Res> {
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) then) =
       _$FailureCopyWithImpl<T, $Res>;
-  $Res call({String errorMessage});
+  $Res call({String errorMessage, Input input});
 }
 
 class _$FailureCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res>
@@ -205,22 +206,28 @@ class _$FailureCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object errorMessage = freezed,
+    Object input = freezed,
   }) {
     return _then(Failure<T>(
       errorMessage == freezed ? _value.errorMessage : errorMessage as String,
+      input == freezed ? _value.input : input as Input,
     ));
   }
 }
 
 class _$Failure<T> implements Failure<T> {
-  const _$Failure(this.errorMessage) : assert(errorMessage != null);
+  const _$Failure(this.errorMessage, this.input)
+      : assert(errorMessage != null),
+        assert(input != null);
 
   @override
   final String errorMessage;
+  @override
+  final Input input;
 
   @override
   String toString() {
-    return 'Result<$T>.failure(errorMessage: $errorMessage)';
+    return 'Result<$T>.failure(errorMessage: $errorMessage, input: $input)';
   }
 
   @override
@@ -229,12 +236,16 @@ class _$Failure<T> implements Failure<T> {
         (other is Failure<T> &&
             (identical(other.errorMessage, errorMessage) ||
                 const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+                    .equals(other.errorMessage, errorMessage)) &&
+            (identical(other.input, input) ||
+                const DeepCollectionEquality().equals(other.input, input)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(errorMessage) ^
+      const DeepCollectionEquality().hash(input);
 
   @override
   $FailureCopyWith<T, Failure<T>> get copyWith =>
@@ -244,23 +255,23 @@ class _$Failure<T> implements Failure<T> {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result success(T value, Input nextInput),
-    @required Result failure(String errorMessage),
+    @required Result failure(String errorMessage, Input input),
   }) {
     assert(success != null);
     assert(failure != null);
-    return failure(errorMessage);
+    return failure(errorMessage, input);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result success(T value, Input nextInput),
-    Result failure(String errorMessage),
+    Result failure(String errorMessage, Input input),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (failure != null) {
-      return failure(errorMessage);
+      return failure(errorMessage, input);
     }
     return orElse();
   }
@@ -292,8 +303,9 @@ class _$Failure<T> implements Failure<T> {
 }
 
 abstract class Failure<T> implements Result<T> {
-  const factory Failure(String errorMessage) = _$Failure<T>;
+  const factory Failure(String errorMessage, Input input) = _$Failure<T>;
 
   String get errorMessage;
+  Input get input;
   $FailureCopyWith<T, Failure<T>> get copyWith;
 }
