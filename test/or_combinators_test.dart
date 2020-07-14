@@ -5,7 +5,6 @@ import 'package:bubo/tools.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var source = """text text""";
 
   test('The OR combinator parses both inputs correctly', () {
     var expectedA = 't';
