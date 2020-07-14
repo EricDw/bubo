@@ -66,4 +66,26 @@ void main() {
 
     expect((actualResult as Success<RegExpMatch>).nextInput, expectedInput);
   });
+
+  test('The andR combinator discards the left value', () {
+    var patternA = """t""";
+
+    var patternB = """e""";
+
+    var expected = 'e';
+
+    var expectedInput = input.incrementColumnBy(2);
+
+    final parserA = RegexParser(patternA);
+
+    final parserB = RegexParser(patternB);
+
+    var actualResult = andR(parserA, parserB).parse(input);
+
+    expect(true, actualResult is Success<RegExpMatch>);
+
+    expect((actualResult as Success<RegExpMatch>).value.group(0), expected);
+
+    expect((actualResult as Success<RegExpMatch>).nextInput, expectedInput);
+  });
 }
