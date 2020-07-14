@@ -1,4 +1,3 @@
-import 'package:bubo/character_parser.dart';
 import 'package:bubo/input.dart';
 import 'package:bubo/input_extensions.dart';
 import 'package:bubo/parser_combinators.dart';
@@ -8,7 +7,7 @@ import 'package:bubo/tuple.dart';
 import 'package:test/test.dart';
 
 void main() {
-  var source = "text text";
+  var source = """text text""";
 
   var input = Input.fromString(source: source);
 
@@ -44,6 +43,7 @@ void main() {
             .group(0),
         expectedB);
 
-    expect((actualResult as Success<Tuple<RegExpMatch, RegExpMatch>>).nextInput, expectedInput);
+    expect((actualResult as Success<Tuple<RegExpMatch, RegExpMatch>>).nextInput,
+        expectedInput);
   });
 }

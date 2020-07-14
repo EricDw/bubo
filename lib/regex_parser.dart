@@ -16,9 +16,15 @@ class RegexParser extends Parser<RegExpMatch> {
     var result = Result<RegExpMatch>.failure(
         "Expected to match pattern: $pattern but found none", input);
 
-    if (input.currentCharacter() == eof) {
+    var currentCharacter = input.currentCharacter();
+
+    if (currentCharacter == eof) {
       result = Result<RegExpMatch>.failure(
           "Expected to match pattern: $pattern but reached end of the input.",
+          input);
+    } else {
+      result = Result<RegExpMatch>.failure(
+          "Expected to match pattern: $pattern but found $currentCharacter with code point of: ${currentCharacter.codeUnitAt(0)}",
           input);
     }
 
