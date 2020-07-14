@@ -1,5 +1,4 @@
-import 'package:bubo/input.dart';
-import 'package:bubo/position.dart';
+import 'package:bubo/core.dart';
 import 'package:test/test.dart';
 
 void main() {

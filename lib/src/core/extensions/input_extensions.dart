@@ -1,5 +1,5 @@
-import 'constants.dart';
-import 'input.dart';
+import '../../constants.dart';
+import '../input.dart';
 
 extension InputExtensions on Input {
   String currentCharacter() {

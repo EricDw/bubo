@@ -1,9 +1,5 @@
-import 'package:bubo/constants.dart';
-import 'package:bubo/input_extensions.dart';
-import 'package:bubo/parser.dart';
-import 'package:bubo/result.dart';
-
-import 'input.dart';
+import '../../core.dart';
+import '../constants.dart';
 
 /// A parser that matches a regex pattern string.
 class RegexParser extends Parser<RegExpMatch> {

@@ -1,9 +1,8 @@
-import 'package:bubo/input_extensions.dart';
-import 'package:bubo/parser.dart';
-import 'package:bubo/result.dart';
+import '../core/extensions/input_extensions.dart';
+import '../../core.dart';
 
-import 'constants.dart';
-import 'input.dart';
+import '../constants.dart';
+import '../core/input.dart';
 
 typedef CharPredicate = bool Function(String char);
 

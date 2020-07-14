@@ -1,5 +1,5 @@
-import 'package:bubo/character_parser.dart';
-import 'package:bubo/parser.dart';
+import '../../../primitives.dart';
+import '../../../core.dart';
 
 extension StringExtensions on String {
   Parser<String> toCharacterParser() {

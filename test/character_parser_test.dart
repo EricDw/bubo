@@ -1,7 +1,5 @@
-import 'package:bubo/character_parser.dart';
-import 'package:bubo/input.dart';
-import 'package:bubo/input_extensions.dart';
-import 'package:bubo/result.dart';
+import 'package:bubo/core.dart';
+import 'package:bubo/primitives.dart';
 import 'package:test/test.dart';
 
 void main() {

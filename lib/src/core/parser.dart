@@ -1,6 +1,5 @@
-library bubo;
 
-import 'package:bubo/result.dart';
+import 'result.dart';
 
 import 'input.dart';
 

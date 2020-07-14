@@ -1,9 +1,7 @@
-import 'package:bubo/input.dart';
-import 'package:bubo/input_extensions.dart';
-import 'package:bubo/parser_combinators.dart';
-import 'package:bubo/regex_parser.dart';
-import 'package:bubo/result.dart';
-import 'package:bubo/tuple.dart';
+import 'package:bubo/combinators.dart';
+import 'package:bubo/core.dart';
+import 'package:bubo/primitives.dart';
+import 'package:bubo/tools.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -27,23 +25,45 @@ void main() {
 
     var actualResult = and(parserA, parserB).parse(input);
 
-    expect(true, actualResult is Success<Tuple<RegExpMatch, RegExpMatch>>);
+    expect(actualResult is Success, true);
+
+    Tuple<RegExpMatch, RegExpMatch> value = (actualResult as Success).value as Tuple<RegExpMatch, RegExpMatch>;
 
     expect(
-        (actualResult as Success<Tuple<RegExpMatch, RegExpMatch>>)
-            .value
+        value
             .first
             .group(0),
         expectedA);
 
     expect(
-        (actualResult as Success<Tuple<RegExpMatch, RegExpMatch>>)
-            .value
+        value
             .second
             .group(0),
         expectedB);
 
-    expect((actualResult as Success<Tuple<RegExpMatch, RegExpMatch>>).nextInput,
+    expect((actualResult as Success).nextInput,
         expectedInput);
+  });
+
+  test('The andL combinator discards the right value', () {
+    var patternA = """t""";
+
+    var patternB = """e""";
+
+    var expected = 't';
+
+    var expectedInput = input.incrementColumnBy(2);
+
+    final parserA = RegexParser(patternA);
+
+    final parserB = RegexParser(patternB);
+
+    var actualResult = andL(parserA, parserB).parse(input);
+
+    expect(true, actualResult is Success<RegExpMatch>);
+
+    expect((actualResult as Success<RegExpMatch>).value.group(0), expected);
+
+    expect((actualResult as Success<RegExpMatch>).nextInput, expectedInput);
   });
 }

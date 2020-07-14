@@ -1,5 +1,5 @@
 
-import 'package:bubo/input.dart';
+import '../../core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'position.freezed.dart';
