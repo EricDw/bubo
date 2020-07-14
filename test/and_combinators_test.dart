@@ -23,7 +23,7 @@ void main() {
 
     final parserB = RegexParser(patternB);
 
-    var actualResult = and(parserA, parserB).parse(input);
+    var actualResult = AND(parserA, parserB).parse(input);
 
     expect(actualResult is Success, true);
 

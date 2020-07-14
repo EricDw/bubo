@@ -3,7 +3,9 @@ import '../../tools.dart';
 
 import '../../core.dart';
 
-Parser<Tuple<A, B>> and<A, B>(Parser<A> parserA, Parser<B> parserB) =>
+/// Checks for success of two parsers and
+/// Tuples the results
+Parser<Tuple<A, B>> AND<A, B>(Parser<A> parserA, Parser<B> parserB) =>
     DelegateParser((Input input) {
       var first = parserA.parse(input);
 
@@ -20,6 +22,8 @@ Parser<Tuple<A, B>> and<A, B>(Parser<A> parserA, Parser<B> parserB) =>
       });
     });
 
+/// Checks for success of two parsers and
+/// keeps the result of the first parser then discards other
 Parser<A> andL<A, B>(Parser<A> parserA, Parser<B> parserB) =>
     DelegateParser((Input input) {
       var first = parserA.parse(input);
@@ -37,6 +41,8 @@ Parser<A> andL<A, B>(Parser<A> parserA, Parser<B> parserB) =>
       });
     });
 
+/// Checks for success of two parsers and
+/// keeps the result of the second parser then discards other
 Parser<B> andR<A, B>(Parser<A> parserA, Parser<B> parserB) =>
     DelegateParser((Input input) {
       var first = parserA.parse(input);

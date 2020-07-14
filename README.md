@@ -1,6 +1,6 @@
 # bubo
 
-A combinatorial parser library writtren in Dart.
+A combinatorial parser library written in Dart.
 
 ## Getting Started
 
