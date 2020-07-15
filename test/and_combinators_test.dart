@@ -15,6 +15,7 @@ void main() {
     var patternB = """e""";
 
     var expectedA = 't';
+
     var expectedB = 'e';
 
     var expectedInput = input.incrementColumnBy(2);
@@ -23,26 +24,18 @@ void main() {
 
     final parserB = RegexParser(patternB);
 
-    var actualResult = AND(parserA, parserB).parse(input);
+    var actualResult = AndParser(parserA, parserB).parse(input);
 
     expect(actualResult is Success, true);
 
-    Tuple<RegExpMatch, RegExpMatch> value = (actualResult as Success).value as Tuple<RegExpMatch, RegExpMatch>;
+    Tuple<RegExpMatch, RegExpMatch> value =
+        (actualResult as Success).value as Tuple<RegExpMatch, RegExpMatch>;
 
-    expect(
-        value
-            .first
-            .group(0),
-        expectedA);
+    expect(value.first.group(0), expectedA);
 
-    expect(
-        value
-            .second
-            .group(0),
-        expectedB);
+    expect(value.second.group(0), expectedB);
 
-    expect((actualResult as Success).nextInput,
-        expectedInput);
+    expect((actualResult as Success).nextInput, expectedInput);
   });
 
   test('The andL combinator discards the right value', () {
@@ -58,7 +51,7 @@ void main() {
 
     final parserB = RegexParser(patternB);
 
-    var actualResult = andL(parserA, parserB).parse(input);
+    var actualResult = AndLeftParser(parserA, parserB).parse(input);
 
     expect(true, actualResult is Success<RegExpMatch>);
 
@@ -80,7 +73,7 @@ void main() {
 
     final parserB = RegexParser(patternB);
 
-    var actualResult = andR(parserA, parserB).parse(input);
+    var actualResult = AndRightParser(parserA, parserB).parse(input);
 
     expect(true, actualResult is Success<RegExpMatch>);
 

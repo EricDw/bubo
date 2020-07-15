@@ -1,37 +1,39 @@
 import 'dart:io';
 
+import 'package:bubo/core.dart';
+
 import 'position.dart';
 
 /// Input for a [Parser].
 class Input {
-  final String originalSource;
+  final String buffer;
   final Position position;
   final Map<String, dynamic> metaData = Map();
 
-  Input({this.originalSource, this.position = const Position()}) {
-    if (originalSource == null)
+  Input({this.buffer, this.position = const Position()}) {
+    if (buffer == null)
       throw ArgumentError("Can not construct Input from null source text.");
   }
 
   factory Input.fromString({String source}) {
-    return Input(originalSource: source);
+    return Input(buffer: source);
   }
 
   factory Input.fromPath({String path}) {
     File sourceFile = File(path);
 
-    return Input(originalSource: sourceFile.readAsStringSync());
+    return Input(buffer: sourceFile.readAsStringSync());
   }
 
   @override
   bool operator ==(other) {
     return other is Input &&
-        other.originalSource == originalSource &&
+        other.buffer == buffer &&
         other.position == position;
   }
 
   @override
   String toString() {
-    return "Input(originalSource: $originalSource, position: $position)";
+    return "Input(originalSource: $buffer, position: $position)";
   }
 }

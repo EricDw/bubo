@@ -5,8 +5,8 @@ extension InputExtensions on Input {
   String currentCharacter() {
     String result = eof;
 
-    if (originalSource.length - 1 >= position.column) {
-      return originalSource[position.column];
+    if (buffer.length - 1 >= position.column) {
+      return buffer[position.column];
     }
 
     return result;
@@ -15,12 +15,12 @@ extension InputExtensions on Input {
   Input incrementColumn() {
     var nextPosition = position.copyWith(column: position.column + 1);
 
-    return Input(originalSource: originalSource, position: nextPosition);
+    return Input(buffer: buffer, position: nextPosition);
   }
 
   Input incrementColumnBy(int amount) {
     var nextPosition = position.copyWith(column: position.column + amount);
 
-    return Input(originalSource: originalSource, position: nextPosition);
+    return Input(buffer: buffer, position: nextPosition);
   }
 }

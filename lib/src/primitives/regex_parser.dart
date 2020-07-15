@@ -25,7 +25,7 @@ class RegexParser extends Parser<RegExpMatch> {
     }
 
     var match = RegExp(pattern)
-        .matchAsPrefix(input.originalSource, input.position.column);
+        .matchAsPrefix(input.buffer, input.position.column);
 
     if (match != null) {
       return Result<RegExpMatch>.success(
