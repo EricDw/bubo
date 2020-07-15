@@ -1,8 +1,21 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+extension TupleExtensions on Object {
+  Tuple<A, B> to<A, B>(B other) => Tuple<A, B>(this, other);
 
-part 'tuple.freezed.dart';
+  operator &(Object other) => Tuple(this, other);
+}
 
-@freezed
-abstract class Tuple<A, B> with _$Tuple<A, B> {
-  factory Tuple([A first, B second]) = _Tuple<A, B>;
+class Tuple<A, B> {
+  A item1;
+
+  B item2;
+
+  Tuple(this.item1, this.item2);
+
+  @override
+  bool operator ==(other) {
+    return other != null &&
+        other is Tuple &&
+        other.item1 == item1 &&
+        other.item2 == item2;
+  }
 }

@@ -1,6 +1,10 @@
 import '../../core.dart';
 import '../../tools.dart';
 
+extension AndParserExtensions<A> on Parser<A> {
+  Parser<Tuple<A, B>> and<B>(Parser<B> other) => AndParser<A, B>(this, other);
+}
+
 /// Checks for success of two parsers and
 /// tuples the results.
 class AndParser<A, B> extends Parser<Tuple<A, B>> {

@@ -31,9 +31,9 @@ void main() {
     Tuple<RegExpMatch, RegExpMatch> value =
         (actualResult as Success).value as Tuple<RegExpMatch, RegExpMatch>;
 
-    expect(value.first.group(0), expectedA);
+    expect(value.item1.group(0), expectedA);
 
-    expect(value.second.group(0), expectedB);
+    expect(value.item2.group(0), expectedB);
 
     expect((actualResult as Success).nextInput, expectedInput);
   });
@@ -80,5 +80,34 @@ void main() {
     expect((actualResult as Success<RegExpMatch>).value.group(0), expected);
 
     expect((actualResult as Success<RegExpMatch>).nextInput, expectedInput);
+  });
+
+  test('The .to combinator returns an AndParser', () {
+    var patternA = """t""";
+
+    var patternB = """e""";
+
+    var expectedA = 't';
+
+    var expectedB = 'e';
+
+    var expectedInput = input.incrementColumnBy(2);
+
+    final parserA = RegexParser(patternA);
+
+    final parserB = RegexParser(patternB);
+
+    var actualResult = parserA.and(parserB).parse(input);
+
+    expect(actualResult is Success, true);
+
+    Tuple<RegExpMatch, RegExpMatch> value =
+    (actualResult as Success).value as Tuple<RegExpMatch, RegExpMatch>;
+
+    expect(value.item1.group(0), expectedA);
+
+    expect(value.item2.group(0), expectedB);
+
+    expect((actualResult as Success).nextInput, expectedInput);
   });
 }
