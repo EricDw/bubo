@@ -29,7 +29,7 @@ class RegexParser extends Parser<RegExpMatch> {
 
     if (match != null) {
       return Result<RegExpMatch>.success(
-          match, input.incrementColumnBy(match.end - match.start));
+          match, input.incrementColumnBy(match.group(0).length));
     }
 
     return result;
