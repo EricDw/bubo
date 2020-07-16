@@ -1,3 +1,4 @@
+import '../../combinators.dart';
 import '../../core.dart';
 
 /// Checks for success of the first parser and if it fails
@@ -18,5 +19,22 @@ class OrParser<T> extends Parser<T> {
     }, orElse: () {
       return right.parse(input);
     });
+  }
+}
+
+/// Takes a list of [Parser]s and returns the result
+/// of the first one that succeeds
+class CompositeOrParser<T> extends Parser<T> {
+  List<Parser<T>> _parsers = [];
+
+  CompositeOrParser([List<Parser<T>> parsers]) {
+    if (parsers != null) _parsers.addAll(parsers);
+  }
+
+  @override
+  Result<T> parse(Input input) {
+    var parser = _parsers.reduce((value, element) => OrParser<T>(value, element));
+
+    return runParserWithInput(parser, input);
   }
 }

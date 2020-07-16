@@ -12,13 +12,13 @@ void main() {
     lowercaseAlphabet.runes.forEach((element) {
       var char = String.fromCharCode(element);
 
-      print(char);
+//      print(char);
 
       var input = Input.fromString(source: char);
 
       var result = parser.parse(input);
 
-      print(result);
+//      print(result);
 
       expect(result is Success, true);
     });
@@ -26,13 +26,13 @@ void main() {
     uppercaseAlphabet.runes.forEach((element) {
       var char = String.fromCharCode(element);
 
-      print(char);
+//      print(char);
 
       var input = Input.fromString(source: char);
 
       var result = parser.parse(input);
 
-      print(result);
+//      print(result);
 
       expect(result is Success, true);
     });

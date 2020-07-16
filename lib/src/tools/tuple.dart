@@ -18,4 +18,11 @@ class Tuple<A, B> {
         other.item1 == item1 &&
         other.item2 == item2;
   }
+
+  @override
+  String toString() {
+
+    return """Tuple(item1: $item1, item2: $item2)""";
+
+  }
 }
