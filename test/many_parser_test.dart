@@ -3,7 +3,7 @@ import 'package:bubo/primitives.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group("Many1Parser", () {
+  group("ManyParser", () {
     test(' returns correct list', () {
       var expected = [
         'e',
@@ -14,7 +14,7 @@ void main() {
 
       var eParser = CharacterParser('e');
 
-      var parser = Many1Parser(eParser);
+      var parser = ManyParser(eParser);
 
       var actual = parser.parse(Input.fromString(source: "eeee"));
 
@@ -29,22 +29,22 @@ void main() {
       expect(resultA.value, expected);
     });
 
-    test(' fails if first input is not a match', () {
+    test(' succeeds even if input is not a match', () {
       var expected = true;
 
       var eParser = CharacterParser('e');
 
-      var parser = Many1Parser(eParser);
+      var parser = ManyParser(eParser);
 
       var actual = parser.parse(Input.fromString(source: "teee"));
 
       print(actual);
 
-      expect(actual is Failure, expected);
+      expect(actual is Success, expected);
 
-      Failure<List<String>> result = (actual as Failure);
+      Success<List<String>> result = (actual as Success);
 
-      print(result.errorMessage);
+      expect(result.value, []);
 
     });
   });

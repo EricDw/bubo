@@ -1,4 +1,9 @@
 export 'src/primitives/predicate_parser.dart';
 export 'src/primitives/character_parser.dart';
 export 'src/primitives/regex_parser.dart';
+export 'src/primitives/many1_parser.dart';
+export 'src/primitives/many_parser.dart';
+export 'src/primitives/sequence_parser.dart';
 export 'src/primitives/extensions/string_extensions.dart';
+export 'src/primitives/delegate_parser.dart';
+export 'src/primitives/end_of_file_parser.dart';

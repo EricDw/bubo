@@ -1,5 +1,4 @@
 import '../../core.dart';
-import '../../tools.dart';
 
 /// Returns a list of all the success values
 /// fails if any of the given parsers fails.

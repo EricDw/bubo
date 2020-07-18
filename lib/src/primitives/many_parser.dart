@@ -3,12 +3,12 @@ import '../../core.dart';
 /// Repeatedly runs the given parser until it fails
 /// then returns the list of results.
 ///
-/// If the parser fails on the first try then
-/// it returns that failure.
-class Many1Parser<T> extends Parser<List<T>> {
+/// This parser always succeeds regardless
+/// if there is an actual match or not.
+class ManyParser<T> extends Parser<List<T>> {
   Parser<T> parser;
 
-  Many1Parser(this.parser);
+  ManyParser(this.parser);
 
   @override
   Result<List<T>> parse(Input input) {
@@ -16,27 +16,16 @@ class Many1Parser<T> extends Parser<List<T>> {
 
     var next = input;
 
-    var first = parser.parse(input);
+    var nextResult = parser.parse(next);
 
-    if (first is Success<T>) {
-      values.add(first.value);
+    while (nextResult is Success<T>) {
+      values.add((nextResult as Success<T>).value);
 
-      next = first.nextInput;
+      next = (nextResult as Success<T>).nextInput;
 
-      var nextResult = parser.parse(next);
-
-      while (nextResult is Success<T>) {
-        values.add((nextResult as Success<T>).value);
-
-        next = (nextResult as Success<T>).nextInput;
-
-        nextResult = parser.parse(next);
-      }
-
-      return Result.success(values, next);
-    } else {
-      return Result.failure(
-          (first as Failure).errorMessage, (first as Failure).input);
+      nextResult = parser.parse(next);
     }
+
+    return Result.success(values, next);
   }
 }
