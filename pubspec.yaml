@@ -2,7 +2,7 @@ name: bubo
 description: A combinatorial parser library writtren in Dart.
 version: 0.0.1
 author: 'Eric De Wildt'
-homepage: ''
+homepage: 'https://ericdw.github.io/bubo/'
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -13,4 +13,4 @@ dependencies:
 dev_dependencies:
   test:
   build_runner:
-  freezed:
+  freezed: ^0.11.4
