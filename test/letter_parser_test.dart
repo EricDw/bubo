@@ -14,7 +14,7 @@ void main() {
 
 //      print(char);
 
-      var input = Input.fromString(source: char);
+      var input = Input.fromString(char);
 
       var result = parser.parse(input);
 
@@ -28,7 +28,7 @@ void main() {
 
 //      print(char);
 
-      var input = Input.fromString(source: char);
+      var input = Input.fromString(char);
 
       var result = parser.parse(input);
 

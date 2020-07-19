@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   group("EndOfFileParser", () {
     test("'s parse function succeeds upon empty input", () {
-      var input = Input.fromString(source: '');
+      var input = Input.fromString('');
 
       var expected = Success('', input);
 
@@ -19,7 +19,7 @@ void main() {
     });
 
     test("'s parse function succeeds if column is at the end", () {
-      var input = Input.fromString(source: 't');
+      var input = Input.fromString('t');
 
       var expected = Success(
           Tuple("t", ""), input.incrementColumn());

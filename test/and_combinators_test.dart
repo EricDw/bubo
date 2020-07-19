@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   var source = """text text""";
 
-  var input = Input.fromString(source: source);
+  var input = Input.fromString(source);
 
   test('The and combinator tuples things correctly', () {
     var patternA = """t""";

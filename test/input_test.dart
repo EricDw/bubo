@@ -5,9 +5,9 @@ void main() {
   var source = "text";
 
   test('Has constructor that accepts a String that throws if it is null', () {
-    final input = Input.fromString(source: source);
+    final input = Input.fromString(source);
     expect(input.buffer, source);
-    expect(() => Input.fromString(source: null), throwsArgumentError);
+    expect(() => Input.fromString(null), throwsArgumentError);
   });
 
   test('Input constructor accepts a an optional Position', () {

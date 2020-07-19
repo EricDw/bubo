@@ -1,7 +1,3 @@
-# bubo
-
-An Object Oriented Combinatorial Parser library written in Dart.
-
 ## Usage
 
 ```dart
@@ -67,5 +63,3 @@ Then returns the raw match and the new `Input` in the result.
 There are many more parsers in the library for doing all kinds
 of tasks. Composing new parsers out of the ones in the library
 is very easy.
-
-## Installation - TODO

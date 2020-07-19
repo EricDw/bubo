@@ -40,7 +40,7 @@ void main() {
 
     var letterParser = LetterParser();
 
-    var aResult = andParser.parse(Input.fromString(source: sampleCode));
+    var aResult = andParser.parse(Input.fromString(sampleCode));
 
     var bResult = andParser.parse((aResult as Success).nextInput);
 

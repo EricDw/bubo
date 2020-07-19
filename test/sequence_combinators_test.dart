@@ -12,7 +12,7 @@ void main() {
     var parser = SequenceParser([tParser, eParser]);
 
     var actual =
-        parser.parse(Input.fromString(source: "te"));
+        parser.parse(Input.fromString("te"));
 
     print(actual);
 

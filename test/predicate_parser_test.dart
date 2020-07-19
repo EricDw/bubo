@@ -5,14 +5,14 @@ import 'package:test/test.dart';
 void main() {
   var source = "text text";
 
-  var input = Input.fromString(source: source);
+  var input = Input.fromString(source);
 
   test('Has a constructor that accepts a char predicate', () {
     PredicateParser((String char) => true);
   });
 
   test('The parse function fails upon empty input', () {
-    var input2 = Input.fromString(source: "");
+    var input2 = Input.fromString("");
 
     var expected = Result<String>.failure(
         "Expected a character instead reached end of the source.", input2);

@@ -3,7 +3,7 @@ import '../../core.dart';
 /// Creates an [Input] from the given string then
 /// runs the given parser with the [Input] and returns the result.
 Result<T> runParserWithString<T>(Parser<T> parser, String input) {
-  return parser.parse(Input.fromString(source: input));
+  return parser.parse(Input.fromString(input));
 }
 
 /// Runs the given parser with the [Input] and returns the result.

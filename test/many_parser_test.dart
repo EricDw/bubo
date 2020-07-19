@@ -16,7 +16,7 @@ void main() {
 
       var parser = ManyParser(eParser);
 
-      var actual = parser.parse(Input.fromString(source: "eeee"));
+      var actual = parser.parse(Input.fromString("eeee"));
 
       print(actual);
 
@@ -36,7 +36,7 @@ void main() {
 
       var parser = ManyParser(eParser);
 
-      var actual = parser.parse(Input.fromString(source: "teee"));
+      var actual = parser.parse(Input.fromString("teee"));
 
       print(actual);
 

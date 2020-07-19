@@ -16,10 +16,10 @@ void main() {
     var parserB = CharacterParser(expectedB);
 
     var actualResultA =
-        OrParser(parserA, parserB).parse(Input.fromString(source: "t"));
+        OrParser(parserA, parserB).parse(Input.fromString("t"));
 
     var actualResultB =
-        OrParser(parserA, parserB).parse(Input.fromString(source: "e"));
+        OrParser(parserA, parserB).parse(Input.fromString("e"));
 
     expect(actualResultA is Success, true);
 

@@ -16,10 +16,10 @@ void main() {
     var composite = CompositeOrParser<String>([parserA, parserB]);
 
     var actualResultA =
-        composite.parse(Input.fromString(source: "t"));
+        composite.parse(Input.fromString("t"));
 
     var actualResultB =
-        composite.parse(Input.fromString(source: "e"));
+        composite.parse(Input.fromString("e"));
 
     expect(actualResultA is Success, true);
 

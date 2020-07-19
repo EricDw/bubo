@@ -1,28 +1,27 @@
-import 'dart:io';
-
 import 'package:bubo/core.dart';
 
 import 'position.dart';
 
 /// Input for a [Parser].
 class Input {
+  /// The text being parsed.
   final String buffer;
+
+  /// The position in the [buffer] the parser is looking at.
   final Position position;
+
+  /// Used to pass around arbitrary objects between parsers.
+  /// This field is not considered when performing equality checks.
   final Map<String, dynamic> metaData = Map();
 
-  Input({this.buffer, this.position = const Position()}) {
+  /// Input for a [Parser], this constructor throws if [buffer] is [Null].
+  Input({this.buffer = "", this.position = const Position()}) {
     if (buffer == null)
       throw ArgumentError("Can not construct Input from null source text.");
   }
 
-  factory Input.fromString({String source}) {
+  factory Input.fromString(String source) {
     return Input(buffer: source);
-  }
-
-  factory Input.fromPath({String path}) {
-    File sourceFile = File(path);
-
-    return Input(buffer: sourceFile.readAsStringSync());
   }
 
   @override

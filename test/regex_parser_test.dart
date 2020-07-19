@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   var source = "text text";
 
-  var input = Input.fromString(source: source);
+  var input = Input.fromString(source);
 
   test('The parse function succeeds upon correct input', () {
     var pattern = """te""";
