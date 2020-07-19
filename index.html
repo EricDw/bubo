@@ -30,9 +30,66 @@
       <section id="main_content">
         <h1>
 <a id="bubo" class="anchor" href="#bubo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>bubo</h1>
-<p>A combinatorial parser library written in Dart.</p>
+<p>An Object Oriented Combinatorial Parser library written in Dart.</p>
 <h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+<div class="highlight highlight-source-dart"><pre>
+<span class="pl-k">void</span> <span class="pl-en">main</span>() {
+  <span class="pl-k">var</span> buffer <span class="pl-k">=</span> <span class="pl-s">"text text"</span>;
+
+  <span class="pl-k">var</span> input <span class="pl-k">=</span> <span class="pl-c1">Input</span>.<span class="pl-en">fromString</span>(buffer);
+
+  <span class="pl-en">test</span>(<span class="pl-s">'The parse function succeeds upon correct input'</span>, () {
+    <span class="pl-k">var</span> expected <span class="pl-k">=</span> <span class="pl-c1">Result</span><span class="pl-k">&lt;</span><span class="pl-c1">String</span><span class="pl-k">&gt;</span>.<span class="pl-en">success</span>(<span class="pl-s">'t'</span>, input.<span class="pl-en">incrementColumn</span>());
+
+    <span class="pl-k">final</span> parser <span class="pl-k">=</span> <span class="pl-c1">CharacterParser</span>(<span class="pl-s">'t'</span>);
+
+    <span class="pl-k">var</span> actual <span class="pl-k">=</span> parser.<span class="pl-en">parse</span>(input);
+
+    <span class="pl-en">expect</span>(actual, expected);
+  });
+}
+</pre></div>
+<p>In this example the parser is told to look for the character 't'.
+It finds it in the input and then returns a result containing
+a new copy of the input with it's position moved forward in the buffer
+and the value it was looking for.</p>
+<p>Another common use case is parsing text using Regular Expressions AKA Regex.</p>
+<div class="highlight highlight-source-dart"><pre>
+<span class="pl-k">void</span> <span class="pl-en">main</span>() {
+  <span class="pl-k">var</span> source <span class="pl-k">=</span> <span class="pl-s">"text text"</span>;
+
+  <span class="pl-k">var</span> input <span class="pl-k">=</span> <span class="pl-c1">Input</span>.<span class="pl-en">fromString</span>(source);
+
+  <span class="pl-en">test</span>(<span class="pl-s">'The parse function succeeds upon correct input'</span>, () {
+    <span class="pl-k">var</span> pattern <span class="pl-k">=</span> <span class="pl-s">"""te"""</span>;
+
+    <span class="pl-k">var</span> expectedString <span class="pl-k">=</span> <span class="pl-s">'te'</span>;
+
+    <span class="pl-k">var</span> expectedInput <span class="pl-k">=</span> input.<span class="pl-en">incrementColumnBy</span>(<span class="pl-c1">2</span>);
+
+    <span class="pl-k">final</span> parser <span class="pl-k">=</span> <span class="pl-c1">RegexParser</span>(pattern);
+
+    <span class="pl-k">var</span> actualResult <span class="pl-k">=</span> parser.<span class="pl-en">parse</span>(input);
+
+    <span class="pl-en">expect</span>(<span class="pl-c1">true</span>, actualResult <span class="pl-k">is</span> <span class="pl-c1">Success</span><span class="pl-k">&lt;</span><span class="pl-c1">RegExpMatch</span><span class="pl-k">&gt;</span>);
+
+    <span class="pl-en">expect</span>(
+        (actualResult <span class="pl-k">as</span> <span class="pl-c1">Success</span><span class="pl-k">&lt;</span><span class="pl-c1">RegExpMatch</span><span class="pl-k">&gt;</span>).value.<span class="pl-en">group</span>(<span class="pl-c1">0</span>), expectedString);
+
+    <span class="pl-en">expect</span>((actualResult <span class="pl-k">as</span> <span class="pl-c1">Success</span><span class="pl-k">&lt;</span><span class="pl-c1">RegExpMatch</span><span class="pl-k">&gt;</span>).nextInput, expectedInput);
+  });
+}
+</pre></div>
+<p>In this example you can see that <code>RegexParser</code> finds the given
+pattern in the text, creates a new input reflecting the movement
+through the buffer equal to the length of the matched value.
+Then returns the raw match and the new <code>Input</code> in the result.</p>
+<p>There are many more parsers in the library for doing all kinds
+of tasks. Composing new parsers out of the ones in the library
+is very easy.</p>
+<h2>
+<a id="installation---todo" class="anchor" href="#installation---todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation - TODO</h2>
       </section>
     </div>
 
